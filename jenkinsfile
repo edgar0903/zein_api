@@ -1,0 +1,23 @@
+node() {  
+    stage('构建') { 
+        // 注释
+        echo 'build' 
+    }
+    stage('测试') { 
+        // 
+        echo 'test'
+		bat label: '', script: 'robot -P  zein_API_auto_test --test *0003 zein_API_auto_test/tc'
+        
+    }
+    stage('部署') { 
+        // 
+        echo 'deploy'
+        
+    }
+    stage('验收') { 
+        // test
+        echo 'test'
+        emailext attachmentsPattern: '*.html,*.xml', body: 'test ', subject: 'test ', to: 'edgar.wang@onemena.com'
+    
+}
+
